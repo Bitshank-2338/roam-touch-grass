@@ -1,0 +1,17 @@
+Meet Roam. Good places. Real stories. A little help getting outside.
+
+Instead of losing a beautiful place in an endless feed, Roam puts the memory beside a map. Explore parks, cafés, trails, and cultural places. Open a story, save somewhere you like, and turn that inspiration into a visit.
+
+In the local prototype, sharing starts with a photo and a short experience. Speak naturally, review the transcript, and confirm the place. Gemma helps fill the draft. Browser identity and a private recovery file keep your memories yours, without a signup wall.
+
+The important part is grounding. Your original experience stays intact. Gemma selects facts from retrieved sources, and Roam attaches the actual source text. If a place has no matching background, the app says so. It does not invent opening hours, prices, or things you never experienced.
+
+Want to go there? Choose how much time you have. Local Gemma builds a plan from cited memories, with a walking budget and clear labels when example stories are used.
+
+Listen to a summary, stop playback whenever you want, and then put the phone away.
+
+The website is live on Render, with Tiger Data connected. It is a read-only preview. The complete AI workflow runs locally with Gemma through Ollama. Private cloud photo storage and GPU moderation are still being connected, so automatic approval remains off.
+
+Fifty-four automated tests pass. This walkthrough uses clearly labelled example memories and illustrative photos.
+
+Roam. Less scrolling. More going.

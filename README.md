@@ -64,3 +64,10 @@ Leaflet, OpenStreetMap/Nominatim, Phosphor icons, illustrative Unsplash photos, 
 `compose.test.yaml` defines disposable PostgreSQL and source-built MinIO. MinIO's official community repository is archived/source-only, so its image is built from the pinned official source for local tests; it is not a production storage recommendation. On Windows this verification used an isolated WSL Docker engine because Docker Desktop was unavailable.
 
 Use `ops/backup-data.py` for a checksum-verified SQLite/media backup and restore into a new directory. `ops/migrate-storage.mjs` preserves IDs and ownership when transferring into an empty PostgreSQL/private S3 destination. `ops/ai-gateway.mjs` provides the authenticated, bounded loopback gateway for a future HTTPS GPU service. Never commit real secrets, user photos, recovery files or labelled moderation evaluation material.
+
+
+## Post-deadline demo supplement — 12 October 2026
+
+The narrated 97-second video, player page, poster and transcript were added after the Week 1 cutoff (12 October 2026, 12:29 IST). These are supplementary presentation assets, not features completed before the deadline. The original DEV submission was published at 12:06:07 IST. No new prize category is claimed for this late addition.
+
+[Watch the narrated demo](https://roam-bitshank.onrender.com/demo.html). Narration uses ElevenLabs Hope. The video edits actual captured local UI screens, with fictional examples and illustrative photos labelled. It distinguishes local Gemma capabilities from the read-only hosted preview and pending GPU/media connections.
