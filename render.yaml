@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: roam
+    runtime: docker
+    plan: free
+    healthCheckPath: /healthz
+    envVars:
+      - key: PUBLIC_POSTING_ENABLED
+        value: "0"
+      - key: ROAM_MODERATOR_KEY
+        generateValue: true
+      - key: ROAM_PROVENANCE_KEY
+        sync: false
+      - key: GEOAPIFY_API_KEY
+        sync: false
+      - key: SHIELDGEMMA_VALIDATED
+        value: "0"

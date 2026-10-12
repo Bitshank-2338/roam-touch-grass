@@ -1,0 +1,30 @@
+{
+  "name": "roam-place-memories",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "node --test test/*.test.mjs",
+    "check": "node --check server.mjs && node --check place-context.mjs && node --check summary-service.mjs && node --check social-store.mjs && node --check moderation.mjs && node --check trending.mjs && node --check public/app.js && node --check public/story-tools.js && node --check public/speech.js && node --check public/references.js && node --check public/maps.js && node --check public/moderator.js && node --check geoapify.mjs && node --check discovery-research.mjs && node --check postgres.mjs && node --check postgres-store.mjs && node --check postgres-trending.mjs && node --check media-store.mjs && node --check ops/migrate-storage.mjs && node --check ops/evaluate-moderation.mjs && node --check ops/ai-gateway.mjs && node --check ops/run-postgres-tests.mjs",
+    "test:storage": "node --test test/storage.integration.mjs",
+    "test:postgres": "node ops/run-postgres-tests.mjs",
+    "test:postgres:s3": "node ops/run-postgres-tests.mjs --s3",
+    "test:pg-contract": "node --test test/pg-store.integration.mjs"
+  },
+  "engines": {
+    "node": ">=24.14"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.1149.0",
+    "@phosphor-icons/web": "^2.1.2",
+    "express": "^5.1.0",
+    "leaflet": "1.9.4",
+    "multer": "^2.0.2",
+    "pg": "^8.23.1",
+    "sharp": "^0.35.5"
+  },
+  "devDependencies": {
+    "acorn": "^8.19.0"
+  }
+}

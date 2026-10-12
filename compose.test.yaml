@@ -1,0 +1,23 @@
+services:
+  postgres:
+    image: postgres:16-bookworm
+    environment:
+      POSTGRES_USER: roamtest
+      POSTGRES_PASSWORD: local-test-only
+      POSTGRES_DB: roamtest
+    ports:
+      - "127.0.0.1:5442:5432"
+    tmpfs:
+      - /var/lib/postgresql/data
+  minio:
+    build:
+      context: .
+      dockerfile: ops/Dockerfile.minio-test
+    command: server /data
+    environment:
+      MINIO_ROOT_USER: roam-local-test
+      MINIO_ROOT_PASSWORD: local-test-password-only
+    ports:
+      - "127.0.0.1:9005:9000"
+    tmpfs:
+      - /data

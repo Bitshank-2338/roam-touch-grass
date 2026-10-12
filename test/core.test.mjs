@@ -1,0 +1,9 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {validatePost,hashToken,owns,validatePlan,distance,validateCaption} from '../core.mjs';
+const post={place:'Test Park',title:'A quiet walk',caption:'We walked for an hour.',category:'Outdoors',lat:12,lng:77,duration:60,date:'2026-10-09'};
+test('reject absent location, invalid date and oversized public content',()=>{assert.throws(()=>validatePost({...post,lat:''}));assert.throws(()=>validatePost({...post,date:'2026-02-30'}));assert.throws(()=>validatePost({...post,caption:'x'.repeat(2501)}));assert.throws(()=>validatePost({...post,date:'2099-01-01'}));assert.equal(validatePost(post).alias,'A fellow explorer');});
+test('edit keys authorize only their owner',()=>{const key='private-browser-key';const hash=hashToken(key);assert.equal(owns(key,hash),true);assert.equal(owns('another-key',hash),false);assert.equal(owns(undefined,hash),false);});
+test('plan must cite known evidence and respect the visit budget',()=>{const plan={title:'An afternoon',summary:'A walk.',stops:[{sourceIds:['p1'],minutes:45,note:'Read the memory first.'}],packing:['Water']};assert.equal(validatePlan(plan,[{id:'p1'}],60).totalMinutes,45);assert.throws(()=>validatePlan(plan,[{id:'other'}],60));assert.throws(()=>validatePlan(plan,[{id:'p1'}],30));assert.throws(()=>validatePlan({...plan,stops:[]},[{id:'p1'}],60));});
+test('nearby retrieval uses geographic distance',()=>{assert.equal(distance({lat:0,lng:0},{lat:0,lng:0}),0);assert.ok(distance({lat:0,lng:0},{lat:0,lng:1})>110);});
+test('caption assistance rejects invented relative dates',()=>{assert.throws(()=>validateCaption('Yesterday I visited the park.','I visited the park.'));assert.equal(validateCaption('Yesterday I visited the park.','Yesterday I visited the park.'),'Yesterday I visited the park.');});

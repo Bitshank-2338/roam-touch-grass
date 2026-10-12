@@ -1,0 +1,7 @@
+const escape=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+export function referenceHTML(reference){
+  const sources=(reference?.sources||[]).filter(source=>{try{const url=new URL(source.url);return url.protocol==='https:'&&url.hostname==='en.wikipedia.org'&&url.pathname.startsWith('/wiki/');}catch{return false;}});
+  const labels={reference_found:'Matched place reference',not_found:'No exact place reference matched',unavailable:'Place reference service unavailable',needs_place:'Add a specific place name to check it'};
+  const checked=typeof reference?.checkedAt==='string'&&/^\d{4}-\d{2}-\d{2}T/.test(reference.checkedAt)?reference.checkedAt.slice(0,10):'';
+  return `<div class="place-reference"><strong><i class="ph ph-${sources.length?'book-open':'info'}"></i>${escape(labels[reference?.status]||'Place information not checked')}</strong>${sources.map(source=>`<a href="${escape(source.url)}" target="_blank" rel="noopener noreferrer">${escape(source.title)} · Wikipedia<i class="ph ph-arrow-up-right"></i></a>`).join('')}<p>${sources.length?'Source context is separate from the personal experience. Confirm current hours, fees and event availability independently. This reference does not establish attendance.':'Your experience stays as your account. No external place facts have been confirmed.'}${checked?` Reference checked ${escape(checked)}.`:''}</p></div>`;
+}
